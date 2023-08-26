@@ -1,15 +1,16 @@
 import {db} from '$lib/firebase';
-import {doc, getDoc} from 'firebase/firestore';
-import type {DocumentSnapshot} from 'firebase/firestore';
+import {addDoc, arrayUnion, collection, doc, getDoc, updateDoc} from 'firebase/firestore';
+import type {DocumentReference, DocumentSnapshot} from 'firebase/firestore';
 
 
-function convertEvent(doc : DocumentSnapshot): MatchaEvent {
+export function convertEvent(doc : DocumentSnapshot): MatchaEvent {
     const data = doc.data();
     const event: MatchaEvent = {
         name: data?.name ?? "", 
         date: data?.date ?? "",
         id: doc.id ?? "",
-        attendees: data?.attendees ?? 0,
+        attendees: data?.attendees ?? [],
+        projects: data?.projects ?? [],
         description: data?.description ?? "",
         questions: data?.questions ?? []
     }
@@ -17,7 +18,7 @@ function convertEvent(doc : DocumentSnapshot): MatchaEvent {
     return event;
 }
 
-async function getEvent(id : string) : Promise<MatchaEvent> {
+export async function getEvent(id : string) : Promise<MatchaEvent> {
     const docRef = doc(db, "events", id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -29,4 +30,19 @@ async function getEvent(id : string) : Promise<MatchaEvent> {
     }
 }
 
-export {getEvent};
+export async function createEvent() : Promise<DocumentReference> {
+    const docRef = await addDoc(collection(db, "events"), {});
+
+    return docRef;
+}
+
+export async function updateEvent(event: MatchaEvent) : Promise<void> {
+    const docRef = doc(db, "events", event.id);
+    await updateDoc(docRef, event);
+}
+
+export async function addUserToEvent(event: MatchaEvent, userID: string) {
+    await updateDoc(doc(db, "events", event.id), {
+        attendees: arrayUnion(userID)
+    });
+}

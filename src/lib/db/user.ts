@@ -1,5 +1,6 @@
 import { db } from '$lib/firebase';
 import { doc, getDoc, setDoc} from 'firebase/firestore';
+
 import type { DocumentSnapshot } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
 
@@ -36,3 +37,4 @@ export async function getUser(id : string) : Promise<MatchaUser> {
         return convertUser(docSnap);
     }
 }
+

@@ -60,6 +60,16 @@
 
 	</div>
 </div>
+<div class='border'>
+	<div class='flex flex-row justify-items-center space-between'>
+		<div class='flex'>
+			<h1 class='cas-size3-reg'>Create Event</h1>
+		</div>
+		<div class='flex'>
+			<h1 class='cas-size3-reg'>Join Event</h1>
+		</div>
+	</div>
+</div>
 
 <style>
 	.border {
@@ -120,7 +130,7 @@
 	.steps {
 		display: flex;
 		flex-direction: row;
-		height: 15rem;
+		min-height: 15rem;
 	}
 	.step {
 		width: 100%;
@@ -136,6 +146,95 @@
 		margin-bottom: 1.5rem;
 	}
 
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow: auto;
+}
+
+.events-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.events_description {
+  flex: 1;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.logo-container {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.split-boxes {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+}
+
+.split-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #ccc;
+  padding: 20px;
+  margin: 5px;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+background-color: white;
+color: black;
+padding: 20px;
+}
+
+.content {
+flex: 1;
+overflow-y: auto; /* Enable vertical scrolling */
+padding: 20px;
+}
 
 
 </style>

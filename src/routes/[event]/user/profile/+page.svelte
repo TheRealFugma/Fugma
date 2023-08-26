@@ -10,14 +10,17 @@
     
     const event = data.event;
 
+    $userAuth = $userAuth;
     let fullName = $userAuth.name;
 
     if ($userAuth.answers.length !== event.questions.length) {
         $userAuth.answers = Array(event.questions.length).fill("");
     }
+
     let answers : string[] = $userAuth.answers;
     let traits : string[] = $userAuth.traits;
     let currentTrait = "";  
+
     function addTrait() {
         if (currentTrait === "") {
             alert("Please enter a trait");
@@ -52,7 +55,7 @@
         await updateUser(user);
         alert("Profile created");
 
-        await goto(`/${event.id}/user/explore`);
+        await goto(`/${event.id}/match`);
     }
 
     function removeTrait(index: number) {

@@ -29,15 +29,15 @@ export function getArrayMatchRatio(list1: string[], list2: string[]) {
     var raw: number = 0
     for (let i = 0; i < list1.length; i++) {
         for (let j = 0; j < list2.length; j++) {
-            raw += Math.max(getMatchRatio(list1[i], list2[j]) - 0.5, 0)
+            raw += getMatchRatio(list1[i], list2[j])
         }
     }
     return raw / list1.length / list2.length
 }
 
 export function personMatchProjects(
-    person: Person, projects: Project[], _n?: number, _cutoff?: number
-): Project[] {
+    person: MatchaUser, projects: EventProject[], _n?: number, _cutoff?: number
+): EventProject[] {
     if (typeof _n === "undefined") {
         var n = 3
     } else {
@@ -48,7 +48,7 @@ export function personMatchProjects(
     } else {
         var cutoff = _cutoff
     }
-    return projects.map((item) => [item, getArrayMatchRatio(person.skills, item.skills)] as [Project, number])
+    return projects.map((item) => [item, getArrayMatchRatio(person.traits, item.skills)] as [EventProject, number])
         .filter((pair) => pair[1] >= cutoff)
         .sort((pair1, pair2) => pair1[1] - pair2[1])
         .slice(-n)
@@ -56,8 +56,8 @@ export function personMatchProjects(
 }
 
 export function personMatchPeople(
-    person: Person, people: Person[], _n?: number, _cutoff?: number
-): Person[] {
+    person: MatchaUser, people: MatchaUser[], _n?: number, _cutoff?: number
+): MatchaUser[] {
     if (typeof _n === "undefined") {
         var n = 3
     } else {
@@ -68,7 +68,7 @@ export function personMatchPeople(
     } else {
         var cutoff = _cutoff
     }
-    return people.map((item) => [item, getArrayMatchRatio(person.skills, item.skills)] as [Person, number])
+    return people.map((item) => [item, getArrayMatchRatio(person.traits, item.traits)] as [MatchaUser, number])
         .filter((pair) => pair[1] >= cutoff)
         .sort((pair1, pair2) => pair1[1] - pair2[1])
         .slice(-n)

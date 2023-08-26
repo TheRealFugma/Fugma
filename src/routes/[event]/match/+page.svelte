@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
 
     import { personMatchPeople, personMatchProjects } from '$lib/algorithm/match';
-    import { convertEvent, getEvent } from '$lib/db/event.js';
+    import { convertEvent } from '$lib/db/event.js';
 
     import { getEventProject } from '$lib/db/eventProject';
     import { getUser } from '$lib/db/user.js';
@@ -46,6 +46,8 @@
         console.log(allProjects);
 
         peopleMatches = personMatchPeople($userAuth, allPeople);
+
+        // {user: 0.6, user2: 0.4}
 
         projectMatches = personMatchProjects($userAuth, allProjects);
 

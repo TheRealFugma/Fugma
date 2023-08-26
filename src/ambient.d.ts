@@ -10,6 +10,7 @@ type MatchaEvent = {
     name: string,
     id: string,
     date: string,
+    category: string,
     attendees: string[],
     projects: string[],
     description: string,

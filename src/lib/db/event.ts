@@ -10,6 +10,7 @@ export function convertEvent(doc : DocumentSnapshot): MatchaEvent {
         date: data?.date ?? "",
         id: doc.id ?? "",
         attendees: data?.attendees ?? [],
+        category: data?.category ?? "",
         projects: data?.projects ?? [],
         description: data?.description ?? "",
         questions: data?.questions ?? []
@@ -46,3 +47,4 @@ export async function addUserToEvent(event: MatchaEvent, userID: string) {
         attendees: arrayUnion(userID)
     });
 }
+

@@ -11,10 +11,24 @@
     export let data;
     
     const event = data.event;
+
+    $userAuth = $userAuth;
     let fullName = $userAuth.name;
 
     if ($userAuth.answers.length !== event.questions.length) {
         $userAuth.answers = Array(event.questions.length).fill("");
+    }
+    let answers : string[] = $userAuth.answers;
+    let traits : string[] = $userAuth.traits;
+    let currentTrait = "";  
+    function addTrait() {
+        if (currentTrait === "") {
+            alert("Please enter a trait");
+            return;
+        }
+        traits.push(currentTrait);
+        currentTrait = "";
+        traits = traits;
     }
     async function submitAnswers() {
         if (profileAnswers[0] === "") {
@@ -39,6 +53,8 @@
         }
 
         await updateUser(user);
+        alert("Profile created");
+
         await goto(`/${event.id}/user/explore`);
     }
 

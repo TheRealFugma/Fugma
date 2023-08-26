@@ -25,10 +25,53 @@ export function getClosestMatches(
         .map((pair) => pair[0])
 }
 
-export function personMatchProjects(person: Person, projects: Project[]) {
-
+export function getArrayMatchRatio(list1: string[], list2: string[]) {
+    var raw: number = 0
+    for (let i = 0; i < list1.length; i++) {
+        for (let j = 0; j < list2.length; j++) {
+            raw += getMatchRatio(list1[i], list2[j])
+        }
+    }
+    return raw / list1.length / list2.length
 }
 
-export function personMatchPeople(person: Person, people: Person[]) {
-
+export function personMatchProjects(
+    person: MatchaUser, projects: EventProject[], _n?: number, _cutoff?: number
+): EventProject[] {
+    if (typeof _n === "undefined") {
+        var n = 3
+    } else {
+        var n = _n
+    }
+    if (typeof _cutoff === "undefined") {
+        var cutoff = 0.6
+    } else {
+        var cutoff = _cutoff
+    }
+    return projects.map((item) => [item, getArrayMatchRatio(person.traits, item.skills)] as [EventProject, number])
+        .filter((pair) => pair[1] >= cutoff)
+        .sort((pair1, pair2) => pair1[1] - pair2[1])
+        .slice(-n)
+        .map((pair) => pair[0])
 }
+
+export function personMatchPeople(
+    person: MatchaUser, people: MatchaUser[], _n?: number, _cutoff?: number
+): MatchaUser[] {
+    if (typeof _n === "undefined") {
+        var n = 3
+    } else {
+        var n = _n
+    }
+    if (typeof _cutoff === "undefined") {
+        var cutoff = 0.6
+    } else {
+        var cutoff = _cutoff
+    }
+    return people.map((item) => [item, getArrayMatchRatio(person.traits, item.traits)] as [MatchaUser, number])
+        .filter((pair) => pair[1] >= cutoff)
+        .sort((pair1, pair2) => pair1[1] - pair2[1])
+        .slice(-n)
+        .map((pair) => pair[0])
+}
+

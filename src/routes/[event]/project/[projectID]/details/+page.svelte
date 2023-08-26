@@ -69,7 +69,6 @@
     <label for="description">Description</label>
     <input type="text" id="description" bind:value={description} />
 
-
     {#each skills as skill, i}
         <p>{skill}</p>
         <button class="btn variant-filled" on:click={() => removeSkill(i)}>Remove Question</button>

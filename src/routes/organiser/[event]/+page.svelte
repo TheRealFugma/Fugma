@@ -30,6 +30,11 @@
             return;
         }
 
+        if (eventDetail.category === "") {
+            alert("Please select a category");
+            return;
+        }
+
         await updateEvent(eventDetail);
         alert("Event updated");
 
@@ -59,6 +64,11 @@
 <input bind:value={eventDetail.name} type="text" placeholder="Event Name" />
 <input bind:value={eventDetail.description} type="text" placeholder="Event Description" />
 <input bind:value={eventDetail.date} type="date" placeholder="Date" />
+
+<select bind:value={eventDetail.category}>
+    <option value="Web Development">Group Mode</option>
+    <option value="Mobile Development">Project Mode</option>
+</select>
 
 {#each eventDetail.questions as question, i}
     <input bind:value={question} type="text" placeholder="Question" />

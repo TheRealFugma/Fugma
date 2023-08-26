@@ -1,5 +1,6 @@
 <script lang='ts'>
     import '$lib/style/fonts.css';
+
     import { goto } from '$app/navigation';
     import { addUserToEvent } from '$lib/db/event';
     import { userAuth } from '$lib/stores/userAuth';
@@ -34,8 +35,8 @@
         </button>
     </div>
 
-
 {:else}
+
     <h1>Event not found</h1>
 {/if}
 

@@ -1,5 +1,5 @@
 import { db } from '$lib/firebase';
-import { doc, getDoc, setDoc} from 'firebase/firestore';
+import { arrayUnion, doc, getDoc, setDoc, updateDoc} from 'firebase/firestore';
 
 import type { DocumentSnapshot } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
@@ -36,5 +36,11 @@ export async function getUser(id : string) : Promise<MatchaUser> {
         console.log("No such user!");
         return convertUser(docSnap);
     }
+}
+
+export async function addUserToProject(projectID:string, userID: string) : Promise<void>  {
+    await updateDoc(doc(db, "projects", projectID), {
+        members: arrayUnion(userID)
+    });
 }
 

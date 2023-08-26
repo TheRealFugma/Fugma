@@ -1,19 +1,17 @@
 <script lang='ts'>
-    import {page} from '$app/stores';
-    import {getEvent} from '$lib/db/event';
-    import {onMount} from 'svelte';
-
-    let eventId = $page.params.event;
-
-    async function loadEvent() : Promise<Event> {
-        return await getEvent(eventId);
-    }
-
+    export let data;
+    const event = data.event;
 </script>
-{#await loadEvent() then event}
-    <h1>Welcome to {event.name}</h1>
-{:catch error}
-    <h1>Something went wrong</h1>
-{/await}
+
+{#if event.name !== ""}
+<h1>Welcome to {event.name}</h1>
+<p>{event.description}</p>
+<p>Number of attendees: {event.attendees}</p>
+<a href={`/${event.id}/user/signIn`}>
+    <button> Join event </button>
+</a>
+{:else}
+<h1>Event not found</h1>
+{/if}
 <style>
 </style>

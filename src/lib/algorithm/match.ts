@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import {levenshteinEditDistance} from 'levenshtein-edit-distance'
 
 export function getMatchRatio(word1: string, word2: string) {
@@ -34,4 +32,3 @@ export function personMatchProjects(person: Person, projects: Project[]) {
 export function personMatchPeople(person: Person, people: Person[]) {
 
 }
->>>>>>> c408bda (Fix some problem with get closest match)

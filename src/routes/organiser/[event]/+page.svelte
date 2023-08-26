@@ -66,8 +66,8 @@
 <input bind:value={eventDetail.date} type="date" placeholder="Date" />
 
 <select bind:value={eventDetail.category}>
-    <option value="Web Development">Group Mode</option>
-    <option value="Mobile Development">Project Mode</option>
+    <option value="Group Mode">Group Mode</option>
+    <option value="Project Mode">Project Mode</option>
 </select>
 
 {#each eventDetail.questions as question, i}

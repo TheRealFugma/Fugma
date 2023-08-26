@@ -47,3 +47,4 @@ export async function addUserToEvent(event: MatchaEvent, userID: string) {
         attendees: arrayUnion(userID)
     });
 }
+

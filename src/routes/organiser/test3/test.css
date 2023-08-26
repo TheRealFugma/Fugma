@@ -27,16 +27,16 @@ body {
   flex-direction: column;
   width: 70%;
   background-color: #ccc;
-  padding: 20px;
+  border: 1px solid #000;
 }
 
 .events_description {
   flex: 1;
   background-color: #fff;
-  margin: 10px 0;
   padding: 20px;
   display: flex;
   flex-direction: row;
+  border: 1px solid #000;
 }
 
 .column {
@@ -63,7 +63,7 @@ body {
   flex: 1;
   background-color: #ccc;
   padding: 20px;
-  margin: 5px;
+  border: 1px solid #000;
 }
 
 .input-container {

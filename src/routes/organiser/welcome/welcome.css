@@ -1,58 +1,96 @@
 body {
-    font-family: sans-serif;
-    background-color: #fff;
-  }
-  
-  header {
-    background-color: #000;
-    color: #fff;
-    padding: 20px;
-  }
-  
-  h1, h2 {
-    font-size: 2em;
-    margin: 0 0 10px 0;
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  section {
-    margin-bottom: 20px;
-  }
-  
-  .for-organizers {
-    background-color: #ccc;
-  }
-  
-  .for-attendees {
-    background-color: #ddd;
-  }
-  
-  ol {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-  
-  .cta {
-    text-align: center;
-  }
-  
-  .cta a {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow: auto;
+}
+
+.events-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.events_description {
+  flex: 1;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.logo-container {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.split-boxes {
+  display: flex;
+  width: 100%;
+}
+
+.split-box {
+  flex: 1;
+  background-color: #ccc;
+  padding: 20px;
+  margin: 5px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+background-color: white;
+color: black;
+padding: 20px;
+}
+
+.footer {
+background-color: black;
+color: white;
+padding: 2px;
+}
+
+.content {
+flex: 1;
+overflow-y: auto; /* Enable vertical scrolling */
+padding: 20px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}

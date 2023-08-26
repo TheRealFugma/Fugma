@@ -81,8 +81,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer">
     <div class="logo-container">
       <p>fugma</p>
     </div>

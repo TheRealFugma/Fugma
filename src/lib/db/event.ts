@@ -3,13 +3,14 @@ import {addDoc, arrayUnion, collection, doc, getDoc, updateDoc} from 'firebase/f
 import type {DocumentReference, DocumentSnapshot} from 'firebase/firestore';
 
 
-function convertEvent(doc : DocumentSnapshot): MatchaEvent {
+export function convertEvent(doc : DocumentSnapshot): MatchaEvent {
     const data = doc.data();
     const event: MatchaEvent = {
         name: data?.name ?? "", 
         date: data?.date ?? "",
         id: doc.id ?? "",
         attendees: data?.attendees ?? [],
+        projects: data?.projects ?? [],
         description: data?.description ?? "",
         questions: data?.questions ?? []
     }

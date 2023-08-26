@@ -11,6 +11,4 @@
 
 <h1>Fugma</h1>
 
-<!-- <input bind:value={newEvent} type="text" placeholder="Event Name" /> -->
-
 <button class="btn variant-filled" on:click={() => createEventWrapper()}>Create Event</button>

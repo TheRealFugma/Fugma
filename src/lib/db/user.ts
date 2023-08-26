@@ -38,17 +38,3 @@ export async function getUser(id : string) : Promise<MatchaUser> {
     }
 }
 
-// export async function updateParticipantsNumber(eventID: string): Promise<void> {
-//     const docRef = doc(db, "events", eventID); 
-
-//     await runTransaction(db, async (transaction) => {
-//         const event = await transaction.get(docRef);
-//         if (!event.exists()) {
-//           throw "Document does not exist!";
-//         }
-    
-//         const newPopulation = event.data().attendees + 1;
-//         transaction.update(docRef, { population: newPopulation });
-//     });
-// }
-

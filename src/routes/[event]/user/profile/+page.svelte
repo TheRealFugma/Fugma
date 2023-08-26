@@ -7,13 +7,23 @@
     
     const event = data.event;
 
-    let fullName = "";
-    let answers : string[] = Array(event.questions.length).fill("");
-    let traits : string[] = [];
+    let fullName = $userAuth.name;
 
-    let currentTrait = "";
+    if ($userAuth.answers.length !== event.questions.length) {
+        $userAuth.answers = Array(event.questions.length).fill("");
+    }
+
+    let answers : string[] = $userAuth.answers;
+    let traits : string[] = $userAuth.traits;
+
+    let currentTrait = "";  
 
     function addTrait() {
+        if (currentTrait === "") {
+            alert("Please enter a trait");
+            return;
+        }
+
         traits.push(currentTrait);
         currentTrait = "";
         traits = traits;
@@ -42,6 +52,8 @@
         }
 
         await updateUser(user);
+        alert("Profile created");
+
         await goto(`/${event.id}/user/explore`);
     }
 

@@ -1,20 +1,13 @@
 <script lang="ts">
     import { updateEvent } from '$lib/db/event';
-    import { page } from '$app/stores';
 
     import { goto } from '$app/navigation';
 
+    export let data;
+    const eventDetail = data.event;
+
     // Edit the details of the event
     let currentQuestion = "";
-
-    const eventDetail: MatchaEvent = {
-        id: $page.params.event,
-        name: "",
-        description: "",
-        attendees: [],
-        date: new Date().getUTCDate().toString(),
-        questions: [],
-    };
 
     async function updateEventWrapper() {
         if (eventDetail.name === "") {
@@ -38,6 +31,8 @@
         }
 
         await updateEvent(eventDetail);
+        alert("Event updated");
+
         await goto(`/organiser/${eventDetail.id}/invite`); 
     }
 

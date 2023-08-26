@@ -1,11 +1,12 @@
 <script lang='ts'>
+    import '$lib/style/fonts.css';
     export let data;
     const event = data.event;
 </script>
 
 {#if event.name !== ""}
 <h1>Welcome to {event.name}</h1>
-<p>{event.description}</p>
+<p >{event.description}</p>
 <p>Number of attendees: {event.attendees}</p>
 <a href={`/${event.id}/user/signIn`}>
     <button> Join event </button>

@@ -25,6 +25,7 @@
   },
   "type": "module",
   "dependencies": {
-    "firebase": "^10.3.0"
+    "firebase": "^10.3.0",
+    "qrcode": "^1.5.3"
   }
 }

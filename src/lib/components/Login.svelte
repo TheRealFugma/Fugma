@@ -24,7 +24,38 @@
     }
 </script>
 
-<input type="email" bind:value={email} />
-<input type="password" bind:value={password} />
+<div class='across'>
+    <div class='down'>
+        <input class='input' 
+            placeholder='email' type="email" bind:value={email} />
+        <input class='input' 
+            placeholder='password' type="password" bind:value={password} />
+    </div>
+    <button class="login green " on:click={async () => login(email, password)}>Login</button>
+</div>
 
-<button class="btn variant-filled" on:click={async () => login(email, password)}>Login</button>
+<style>
+    .across {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: relative;
+        gap: 10px;
+    }
+    .down {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 4rem;
+    }
+    .login {
+        height: 4rem;
+        border: 1px solid var(--black);
+        border-radius: 2px;
+    }
+
+    .input {
+        margin-left: auto;
+        width: 15rem;
+    }
+</style>

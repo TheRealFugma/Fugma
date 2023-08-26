@@ -13,6 +13,8 @@
     "@skeletonlabs/skeleton": "^1.12.0",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.20.4",
+    "@types/node": "^20.5.6",
+    "@types/qrcode": "^1.5.1",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",
@@ -25,6 +27,8 @@
   },
   "type": "module",
   "dependencies": {
-    "firebase": "^10.3.0"
+    "firebase": "^10.3.0",
+    "levenshtein-edit-distance": "^3.0.1",
+    "qrcode": "^1.5.3"
   }
 }

@@ -1,0 +1,68 @@
+:root{
+    --line-height: 1;
+    --font-rel: 0.4;
+}
+
+.cas-size6-reg {
+    font-family: 'big-caslon-fb', serif;
+    font-size: calc(120pt * var(--font-rel));
+    font-weight: 400;
+    line-height: var(--line-height);
+    letter-spacing: calc(-0.2rem * var(--font-rel));
+    color: #1E1E1E;
+}
+.cas-size5-reg {
+    font-family: 'big-caslon-fb', serif;
+    font-size: calc(96pt * var(--font-rel));
+    font-weight: 400;
+    line-height: var(--line-height);
+    letter-spacing: calc(-0.2rem * var(--font-rel));
+    color: #1E1E1E;
+}
+
+.cas-size4-reg {
+    font-family: 'big-caslon-fb', serif;
+    font-size: calc(80pt * var(--font-rel));
+    font-weight: 400;
+    line-height: var(--line-height);
+    letter-spacing: calc(-0.2rem * var(--font-rel)); 
+    color: #1E1E1E;
+}
+
+.cas-size3-reg {
+    font-family: 'big-caslon-fb', serif;
+    font-size: calc(64pt * var(--font-rel));
+    font-weight: 400;
+    line-height: var(--line-height);
+    letter-spacing: calc(-0.2rem * var(--font-rel));
+    color: #1E1E1E;
+}
+
+.cas-size2-reg {
+    font-family: 'big-caslon-fb', serif;
+    font-size: calc(48pt * var(--font-rel));
+    font-weight: 400;
+    line-height: var(--line-height);
+    color: #1E1E1E;
+}
+
+.hal-size3-reg {
+    font-family: 'halyard-display', 'sans-serif';
+    font-size: calc(72pt * var(--font-rel));
+    line-height: var(--line-height);
+    color: #1E1E1E;
+}
+.hal-size2-reg {
+    font-family: 'halyard-display', 'sans-serif';
+    font-size: calc(36pt * var(--font-rel));
+    line-height: var(--line-height);
+    font-weight: 200pt;
+    color: #1E1E1E;
+}
+.hal-size1-reg {
+    font-family: 'halyard-display', 'sans-serif';
+    font-size: calc(36pt * var(--font-rel));
+    font-weight: 400pt;
+    line-height: var(--line-height);
+    color: #1E1E1E;
+}

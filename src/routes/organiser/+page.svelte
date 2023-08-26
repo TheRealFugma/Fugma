@@ -1,13 +1,16 @@
 <script>
-    import { createEvent } from '$lib/db/event'
-    import Login from '$lib/components/Login.svelte';
+    import { createEvent } from '$lib/db/event';
+    import { goto } from '$app/navigation';
 
-    import { page } from '$app/stores';
+    const createEventWrapper = async () => {
+        const docRef = await createEvent();
 
+        await goto(`/organiser/${docRef.id}`)
+    }
 </script>
-
-<Login />
 
 <h1>Fugma</h1>
 
-<button class="btn variant-filled" on:click={() => createEvent()}>Create Event</button>
+<!-- <input bind:value={newEvent} type="text" placeholder="Event Name" /> -->
+
+<button class="btn variant-filled" on:click={() => createEventWrapper()}>Create Event</button>

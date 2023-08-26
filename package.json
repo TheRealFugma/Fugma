@@ -27,6 +27,7 @@
   "type": "module",
   "dependencies": {
     "firebase": "^10.3.0",
+    "levenshtein-edit-distance": "^3.0.1",
     "qrcode": "^1.5.3"
   }
 }

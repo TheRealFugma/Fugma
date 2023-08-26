@@ -1,14 +1,28 @@
-import { SequenceMatcher } from "difflib";
+import {levenshteinEditDistance} from 'levenshtein-edit-distance'
 
-export function stringArrSimilarity(list1: string[], list2: string[]) {
-    let score = 0;
-    for(let i = 0; i < list1.length; i++) {
-        for(let j = 0; j < list2.length; i++) {
-            score += new SequenceMatcher(null, list1[i], list2[j]).ratio();
-        }
+export function getMatchRatio(word1: string, word2: string) {
+    var distance = levenshteinEditDistance(word1, word2)
+    return 1 - distance / Math.max(word1.length, word2.length)
+}
+
+export function getClosestMatches(
+    word: string, possibilities: string[], _n?: number, _cutoff?: number
+): string[] {
+    if (typeof _n === "undefined") {
+        var n = 3
+    } else {
+        var n = _n
     }
-
-    return score;
+    if (typeof _cutoff === "undefined") {
+        var cutoff = 0.6
+    } else {
+        var cutoff = _cutoff
+    }
+    return possibilities.map((item) => [item, getMatchRatio(word, item)] as [string, number])
+        .filter((pair) => pair[1] >= cutoff)
+        .sort((pair1, pair2) => pair1[1] - pair2[1])
+        .slice(0, n)
+        .map((pair) => pair[0])
 }
 
 export function personMatchProjects(person: Person, projects: Project[]) {

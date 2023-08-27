@@ -5,6 +5,7 @@
     import Login from "$lib/components/Login.svelte";
     import { auth } from "$lib/firebase";
     import { signOut } from "firebase/auth";
+    import { addUserToEvent } from '$lib/db/event';
 
     export let data;
     
@@ -44,6 +45,11 @@
             return;
         }
 
+        if ($userAuth.id === "") {
+            alert("You are not logged in");
+            return;
+        }
+
         const user : MatchaUser = {
             name: fullName,
             id : $userAuth.id,
@@ -55,6 +61,7 @@
         await updateUser(user);
         alert("Profile created");
 
+        await addUserToEvent(event, $userAuth.id);
         await goto(`/${event.id}/match`);
     }
 

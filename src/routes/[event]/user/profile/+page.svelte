@@ -42,7 +42,7 @@
         await updateUser(user);
         alert("Profile created");
 
-        await goto(`/${event.id}/user/match`);
+        await goto(`/${event.id}/match`);
     }
 
     let profileQuestions = [

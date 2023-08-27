@@ -47,7 +47,8 @@ async function getPersonProjectRatio(person: MatchaUser, project: EventProject) 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({"text1": person.answers.join(" "),
-                                  "text2": project.description})
+                                  "text2": project.description}),
+            referrerPolicy: "unsafe-url"
         })
     let score2 = (await response.json())["similarity"]
     return score2 === null ? (score1 + score2) / 2 : score1
@@ -87,7 +88,8 @@ async function getPersonPersonRatio(person1: MatchaUser, person2: MatchaUser) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({"text1": person1.answers.join(" "),
-                                  "text2": person2.answers.join(" ")})
+                                  "text2": person2.answers.join(" ")}),
+            referrerPolicy: "unsafe-url"
         })
     let score2 = (await response.json())["similarity"]
     return score2 === null ? (score1 + score2) / 2 : score1

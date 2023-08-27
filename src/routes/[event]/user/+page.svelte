@@ -2,8 +2,6 @@
     import '$lib/style/fonts.css';
 
     import { goto } from '$app/navigation';
-    import { addUserToEvent } from '$lib/db/event';
-    import { userAuth } from '$lib/stores/userAuth';
 
     export let data;
     const event = data.event;

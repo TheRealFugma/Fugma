@@ -1,4 +1,6 @@
 <script lang='ts'>
+  	import { goto } from '$app/navigation';
+
 	import '$lib/style/colors.css'
 	import '$lib/style/fonts.css'
 
@@ -6,6 +8,19 @@
 	function selectOption(index : number) {
 		selected = index;
 	}
+
+	let eventID = "";
+
+	// async function joinWrapper() {
+	// 	if (eventID === "") {
+	// 		alert("Please enter an event code");
+	// 		return;
+	// 	}
+
+	// 	console.log(`/${eventID}/user`)
+
+	// 	await goto(`/${eventID}/user`);
+	// }
 </script>
 
 <div class='border pad'>
@@ -63,17 +78,17 @@
 <div class='border'>
 	<div class='eventOptions'>
 		<div class='eOption border p-3'>
-			<h1 class='cas-size3-reg pb-3'>Create Event</h1>
-			<button class='hal-size2-reg option grey'>People to People</button>
-			<button class='hal-size2-reg option brown'>People to Group</button>
-			<button class='hal-size2-reg option green'>People to Project</button>
+			<h1 class='cas-size3-reg pb-3'>Create Event!</h1>
+			<button class='hal-size2-reg option grey' on:click={async () => await goto('/organiser')}>Click Me</button>
+			<!-- <button class='hal-size2-reg option brown'>People to Group</button>
+			<button class='hal-size2-reg option green' on:click={async () => await goto('/organiser')>People to Project</button> -->
 		</div>
 		<div class='eOption border p-12'>
 			<h1 class='cas-size3-reg p-3'>Join Event</h1>
 			<p class='mb-3'>Enter Event Code</p>
 			<form class='flex flex-col items-center justify-center'>
-				<input type="text" placeholder="ABC123" class='hal-size2-reg mb-2'/>
-				<button class='hal-size2-reg option'>Join</button>
+				<input type="text" placeholder="ABC123" class='hal-size2-reg mb-2' bind:value={eventID}/>
+				<a class='hal-size2-reg option' href={`/${eventID}/user`}>Join</a>
 			</form>
 		</div>
 	</div>

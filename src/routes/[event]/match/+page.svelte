@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
 
     import { personMatchPeople, personMatchProjects } from '$lib/algorithm/match';
-    import { convertEvent, getEvent } from '$lib/db/event.js';
+    import { convertEvent } from '$lib/db/event.js';
 
     import { getEventProject } from '$lib/db/eventProject';
     import { getUser } from '$lib/db/user.js';
@@ -16,8 +16,8 @@
 
     const event: MatchaEvent = data.event;
 
-    let projectMatches: EventProject[] = [];
-    let peopleMatches: MatchaUser[] = [];
+    let projectMatches: [EventProject, number][] = [];
+    let peopleMatches: [MatchaUser, number][] = [];
 
 
     const unsub = onSnapshot(doc(db, "events", event.id), async (doc) => {
@@ -45,9 +45,11 @@
         console.log(allPeople);
         console.log(allProjects);
 
-        peopleMatches = personMatchPeople($userAuth, allPeople);
+        peopleMatches = personMatchPeople($userAuth, allPeople).reverse();
 
-        projectMatches = personMatchProjects($userAuth, allProjects);
+        // {user: 0.6, user2: 0.4}
+
+        projectMatches = personMatchProjects($userAuth, allProjects).reverse();
 
         console.log(peopleMatches);
         console.log(projectMatches);
@@ -60,32 +62,127 @@
     }
 </script>
 
-<h1>Explore</h1>
+{#if event.name !== ""}
+    <div class='calling border'>
+        <h1 class='cas-size6-reg'>{event.name}</h1>
+        <div class='line'></div>
+        <p class='hal-size2-reg'>{event.description}</p>
+    </div>
+    <div class='stats'>
+        <div class='green stat border'>
+            {event.attendees.length} people joined
+        </div>
+        <div class='brown stat border'>
+            {event.date}
+        </div>
+    </div>
+    <div class='calling border'>
+        <h2 class='cas-size3-reg'>Your suggested group members</h2>
+            <div class='members'>
+                <div class='green member border'>
+                    {event.attendees.length} people joined
+                </div>
+                <div class='brown member border'>
+                    {event.date}
+                </div>
+                <div class='grey member border'>
+                    {event.date}
+                </div>
+            </div>
+    </div>
+
+    {:else}
+
+    <h1>Event not found</h1>
+{/if}
+
+
 
 {#if event.category === "Project Mode"}
     {#each projectMatches as eventProject}
-        {eventProject.name}
-        {eventProject.description}
-        {#each eventProject.skills as skill}
+        {eventProject[0].name}
+        <br/>
+
+        {eventProject[0].description}
+        {#each eventProject[0].skills as skill}
             {skill}
+            <br/>
         {/each}
 
-        <button class="btn variant-filled" on:click={async () => await gotoProject(eventProject.id)}>View Project</button>
+        Similarity: {eventProject[1]}
+
+        <button class="btn variant-filled" on:click={async () => await gotoProject(eventProject[0].id)}>View Project</button>
+
+        <br/>
     {/each}
     
 {:else}
     {#each peopleMatches as user}
-        {user.name}
+        {user[0].name}
         <!-- {user.description} -->
-        {#each user.traits as trait}
+        {#each user[0].traits as trait}
             {trait}
+            <br/>
+
         {/each}
 
-        {#each user.answers as answer}
+        {#each user[0].answers as answer}
             {answer}
+            <br/>
+
         {/each}
+
+        Similarity: {user[1]}
 
         <label for="invite">Invite</label>
         <input type="checkbox" id="invite"/>
+
+        <br/>
     {/each}    
 {/if}
+
+
+<style>
+    .calling {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem;
+    }
+
+    .line {
+        width: 30%;
+        height: 1px;
+        background-color: var(--black);
+    }
+    
+    .border {
+        border: 0.5px solid var(--black);
+    }
+    
+    .button {
+        background-color: var(--white);
+        height: 6rem;
+        width: 40vw;
+    }
+
+    .members {
+        display: flex;
+        justify-content: space-around;
+    }
+    .member {
+        padding: 20px;
+        margin: 20px;
+        text-align: center;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+    }
+    .stat {
+        padding: 20px;
+        width: 50%;
+        text-align: center;
+    }
+</style>

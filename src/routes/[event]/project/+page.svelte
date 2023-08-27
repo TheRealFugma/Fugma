@@ -14,7 +14,7 @@
     }
 </script>
 
-<h1>Fugma</h1>
+<h1>Matcha</h1>
 
 <h2>Create a project at event {event.name}</h2>
 

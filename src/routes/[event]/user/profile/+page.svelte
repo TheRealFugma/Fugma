@@ -5,6 +5,8 @@
     import Login from "$lib/components/Login.svelte";
     import { auth } from "$lib/firebase";
     import { signOut } from "firebase/auth";
+    import ProfileForm from '$lib/components/ProfileForm.svelte';
+    import QuestionForm from '$lib/components/QuestionForm.svelte';
     import { addUserToEvent } from '$lib/db/event';
 
     export let data;
@@ -12,35 +14,20 @@
     const event = data.event;
 
     $userAuth = $userAuth;
-    let fullName = $userAuth.name;
 
     if ($userAuth.answers.length !== event.questions.length) {
         $userAuth.answers = Array(event.questions.length).fill("");
     }
-
-    let answers : string[] = $userAuth.answers;
-    let traits : string[] = $userAuth.traits;
-    let currentTrait = "";  
-
-    function addTrait() {
-        if (currentTrait === "") {
-            alert("Please enter a trait");
-            return;
-        }
-        traits.push(currentTrait);
-        currentTrait = "";
-        traits = traits;
-    }
     async function submitAnswers() {
-        if (fullName === "") {
+        if (profileAnswers[0] === "") {
             alert("Please enter a display name");
             return;
         }
-        if (answers.includes("")) {
+        if (eventAnswers.includes("")) {
             alert("Please answer all questions");
             return;
         }
-        if (traits.length === 0) {
+        if (skills.length === 0) {
             alert("Please add at least one trait");
             return;
         }
@@ -51,11 +38,11 @@
         }
 
         const user : MatchaUser = {
-            name: fullName,
+            name: profileAnswers[0],
             id : $userAuth.id,
             email: $userAuth.email,
-            answers: answers,
-            traits: traits
+            answers: eventAnswers,
+            traits: skills
         }
 
         await updateUser(user);
@@ -65,47 +52,108 @@
         await goto(`/${event.id}/match`);
     }
 
-    function removeTrait(index: number) {
-        traits.splice(index, 1);
-        traits = traits;
-    }
+    let profileQuestions = [
+        "Display name",
+        "Mobile number",
+        "Postcode"
+    ]
+    let profileAnswers = ["", "", ""]
+
+    let eventAnswers = Array(event.questions.length).fill("");
+    let skills : string[] = [];
+    let intersts : string[] = []
+
 
 </script>
 
-<div class='border green'>
+<div class='border brown loginBox'>
     {#if $userAuth.email !== ""}
-        <p>Logged in as {$userAuth.email}</p>
-        <button class="btn variant-filled" on:click={async () => await signOut(auth)}>Logout</button>
+        <div class='across'>
+            <p>You are logged in as <b>{$userAuth.email}</b></p>
+            <button class="grey button" on:click={async () => await signOut(auth)}>Logout</button>
+        </div>
 
         <slot />
     {:else}
-        <p>Not logged in</p>
+        <div>
+            <h1 class='cas-size3-reg'>Log in // Sign up</h1>
+            <p class='hal-size1-reg'>New to Matcha? Make up a password. <br/> Returning? Use the same password</p>
+        </div>
         <Login />
     {/if}
 </div>
 
-<h1>Please create your profile for this event</h1>
-
-<form>
-    <label for="fullName">Display name</label>
-    <input type="text" id="fullName" bind:value={fullName} />
-    {#each event.questions as question, i}
-        <label for={question}>{question}</label>
-        <input type="text" id={question} bind:value={answers[i]} />
-    {/each}
-    {#each traits as trait, i}
-        <p>{trait}</p>
-        <button class="btn variant-filled" on:click={() => removeTrait(i)}>Remove Question</button>
-    {/each}
-
-    <input type="text" bind:value={currentTrait} />
-    <button class="btn variant-filled" on:click={() => addTrait()}>Add trait</button>
-
-    <button class="btn variant-filled" on:click={async() => submitAnswers()}>Submit</button>
-</form>
+{#if $userAuth.email === ""}
+<div class='popup cas-size3-reg'>
+    <p>Please log in to create your profile</p>
+</div>
+{/if}
+<div class={`${$userAuth.email === "" ? 'inactive' : ''}`}>
+    <div class='across'>
+    <ProfileForm questions={profileQuestions} bind:answers={profileAnswers}/>
+    <QuestionForm 
+        questions={event.questions} bind:answers={eventAnswers}
+        skillon={true} intereston={true} createQuestions={false}
+        title={"Answer these event questions"} description={"This event is for tough people"}
+        bind:skills={skills} bind:interests={intersts}/>
+    </div>
+    
+    <div class='submit green border'>
+        <button class="btn cas-size3-reg" on:click={async() => submitAnswers()}>Submit Response</button>
+    </div>
+</div>
 
 <style>
     .border {
         border: 0.5px solid var(--black);
+    }
+
+    .loginBox {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .inactive {
+        opacity: 0.2;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .popup {
+        position: absolute;
+        transform: translate(0, 50%);
+        width: 100vw;
+        text-align: center;
+    }
+    
+    .across {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .button {
+        border-radius: 2px;
+        border: 1px solid var(--black);
+    }
+    .across {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .submit {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .btn {
+        border-radius: 2px;
+        border: 1px solid var(--black);
+        padding: 20px;
     }
 </style>

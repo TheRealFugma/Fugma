@@ -1,10 +1,8 @@
 <script>
-    import '$lib/style/fonts.css'
-    import '$lib/style/colors.css'
-
     export let data;
     let event = data.event;
 </script>
+
 <div class='border pad'>
  <div class='nav_inner'>
   <div class='nav_logo'>
@@ -45,5 +43,5 @@
 		background-color: #b0b0b0;
 		margin-right: 0.5rem;
 	}
-
+    
 </style>

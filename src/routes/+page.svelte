@@ -12,12 +12,12 @@
  <div class='nav_inner'>
   <div class='nav_logo'>
     <div class='circle'></div>
-    <h1 class='cas-size3-reg'>fugma</h1>
+    <h1 class='cas-size3-reg'>Matcha</h1>
   </div> 
  </div>
 </div>
 <div class='calling border'>
-	<h1 class='cas-size5-reg'>Welcome to <em>Fugma</em></h1>
+	<h1 class='cas-size5-reg'>Welcome to <em>Matcha</em></h1>
 	<p class='hal-size1-reg sub'>Automatically form groups and allocate<br/> attendees based on skills</p>
 </div>
 <div class="border">

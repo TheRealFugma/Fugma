@@ -20,6 +20,8 @@ export function convertEvent(doc : DocumentSnapshot): MatchaEvent {
 }
 
 export async function getEvent(id : string) : Promise<MatchaEvent> {
+    if (id === "") return convertEvent({} as DocumentSnapshot);
+
     const docRef = doc(db, "events", id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

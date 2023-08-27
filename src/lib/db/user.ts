@@ -27,6 +27,8 @@ export async function updateUser(user : MatchaUser) : Promise<void> {
 }
 
 export async function getUser(id : string) : Promise<MatchaUser> {
+    if (id === "") return convertUser({} as DocumentSnapshot);
+    
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

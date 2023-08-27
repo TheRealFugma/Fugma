@@ -2,14 +2,16 @@
     import '$lib/style/fonts.css';
 
     import { goto } from '$app/navigation';
-    import { addUserToEvent } from '$lib/db/event';
-    import { userAuth } from '$lib/stores/userAuth';
 
     export let data;
     const event = data.event;
 
     async function userJoinEvent() {
-        await addUserToEvent(event, $userAuth.id);
+        // if ($userAuth.id === "") {
+        //     alert("You are not logged in");
+        //     return;
+        // }
+
         await goto(`/${event.id}/user/profile`)
     }
 </script>

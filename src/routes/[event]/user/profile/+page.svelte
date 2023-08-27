@@ -7,6 +7,7 @@
     import { signOut } from "firebase/auth";
     import ProfileForm from '$lib/components/ProfileForm.svelte';
     import QuestionForm from '$lib/components/QuestionForm.svelte';
+    import { addUserToEvent } from '$lib/db/event';
 
     export let data;
     
@@ -29,7 +30,12 @@
         if (skills.length === 0) {
             alert("Please add at least one trait");
             return;
-        };
+        }
+
+        if ($userAuth.id === "") {
+            alert("You are not logged in");
+            return;
+        }
 
         const user : MatchaUser = {
             name: profileAnswers[0],
@@ -42,6 +48,7 @@
         await updateUser(user);
         alert("Profile created");
 
+        await addUserToEvent(event, $userAuth.id);
         await goto(`/${event.id}/match`);
     }
 
@@ -150,3 +157,4 @@
         padding: 20px;
     }
 </style>
+

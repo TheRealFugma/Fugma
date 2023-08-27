@@ -17,7 +17,7 @@
  <div class='nav_inner'>
   <div class='nav_logo'>
     <div class='circle'></div>
-    <h1 class='cas-size3-reg'>fugma</h1>
+    <h1 class='cas-size3-reg'>Matcha</h1>
   </div> 
  </div>
 </div>
@@ -25,18 +25,18 @@
     <div class='calling border'>
         <h1 class='cas-size6-reg'>Let's get started</h1>
         <div class='line'></div>
-        <p class='hal-size2-reg'>Follow the steps to get an event runninn</p>
+        <p class='hal-size2-reg'>Get ready for an uneventful event</p>
     </div>
     <div class='stats'>
         <div class='green stat border'>
-            People will be flocking to connect
+            Connect your participants
         </div>
         <div class='brown stat border'>
-            Thanks to our algorithm
+            Powered by our smart, modern algorithm
         </div>
     </div>
     <div class='border calling grey'>
-        <p class='hal-size2-reg'>Your event will be smooth and organised.</p>
+        <!-- <p class='hal-size2-reg'>Your event will be smooth and organised.</p> -->
         <button class='button hal-size3-reg' on:click={() => createEventWrapper()}>
             Create Event
         </button>

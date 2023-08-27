@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
 
     import { personMatchPeople, personMatchProjects } from '$lib/algorithm/match';
-    import { convertEvent } from '$lib/db/event.js';
+    import { convertEvent } from '$lib/db/event';
 
     import { getEventProject } from '$lib/db/eventProject';
     import { getUser } from '$lib/db/user.js';
@@ -16,14 +16,16 @@
 
     export let data;
 
-    const event: MatchaEvent = data.event;
+    let eventUpdated: MatchaEvent = data.event;
 
     let projectMatches: [EventProject, number][] = [];
     let peopleMatches: [MatchaUser, number][] = [];
 
 
-    const unsub = onSnapshot(doc(db, "events", event.id), async (doc) => {
-        const eventUpdated = convertEvent(doc);
+    const unsub = onSnapshot(doc(db, "events", eventUpdated.id), async (doc) => {
+        eventUpdated = convertEvent(doc);
+
+        console.log(eventUpdated);
 
         const allPeoplePromise: Promise<MatchaUser>[] = [];
 
@@ -62,32 +64,32 @@
     onDestroy(() => unsub());
 
     async function gotoProject(projectID: string) {
-        await goto(`/${event.id}/project/${projectID}/join`);
+        await goto(`/${eventUpdated.id}/project/${projectID}/join`);
     }
 </script>
 
-{#if event.name !== ""}
+{#if eventUpdated.name !== ""}
     <div class='calling border'>
-        <h1 class='cas-size6-reg'>{event.name}</h1>
+        <h1 class='cas-size6-reg'>{eventUpdated.name}</h1>
         <div class='line'></div>
-        <p class='hal-size2-reg'>{event.description}</p>
+        <p class='hal-size2-reg'>{eventUpdated.description}</p>
     </div>
     <div class='stats'>
         <div class='green stat border'>
-            {event.attendees.length} people joined
+            {eventUpdated.attendees.length} people joined
         </div>
         <div class='brown stat border'>
-            {event.date}
+            {eventUpdated.date}
         </div>
     </div>
     {:else}
 
-    <h1>Event not found</h1>
+    <h1>eventUpdated not found</h1>
 {/if}
 
 
 
-{#if event.category === "Project Mode"}
+{#if eventUpdated.category === "Project Mode"}
     <div class='announcement cas-size3-reg'>Your suggested projects</div>
     <div class='matches'>
         {#each projectMatches as eventProject}

@@ -27,7 +27,7 @@
         <br>
         <a href={urlProject}>{urlProject}</a>
         <QRCode url={urlProject} />
-        <p class='hal-size2-reg'>Attendees scan the QR code or use this code to access their log in page and create their profile.</p>
+        <p class='hal-size2-reg'>Companies or organisers can add projects for participants to join.</p>
     </div>
 </div>
 

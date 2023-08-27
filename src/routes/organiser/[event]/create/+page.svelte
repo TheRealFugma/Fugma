@@ -8,6 +8,7 @@
     export let data;
     let eventDetail = data.event;
     let eventType = "";
+    
     async function updateEventWrapper() {
         if (profileAnswers[0] === "") {
             alert("Please enter an event name");
@@ -51,10 +52,10 @@
         "Description",
         "Location"
     ]
+
     let profileAnswers = ["", "", ""]
     let skills : string[] = [];
     let interests : string[] = []
-
 </script>
 
 <div>
@@ -71,11 +72,11 @@
         <div>
             <div class='cas-size2-reg'>Select event type</div>
             <select name='Event type' bind:value={eventType}>
-                <option value='Group'>People to Group</option>
-                <option value='Project'>People to Project</option>
+                <option value='Group Mode'>Find a group</option>
+                <option value='Project Mode'>Find a Project</option>
             </select>
         </div>
-        <button class="btn cas-size3-reg" on:click={async() =>updateEventWrapper()}>Submit Response</button>
+        <button class="btn cas-size3-reg" on:click={async() =>updateEventWrapper()}>Create Event!</button>
     </div>
 </div>
 

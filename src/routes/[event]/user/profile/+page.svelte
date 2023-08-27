@@ -70,7 +70,7 @@
     {:else}
         <div>
             <h1 class='cas-size3-reg'>Log in // Sign up</h1>
-            <p class='hal-size1-reg'>New to Fugma, Make up a password. <br/> Returning? Use the same password</p>
+            <p class='hal-size1-reg'>New to Matcha, make up a password. <br/> Returning? Use the same password</p>
         </div>
         <Login />
     {/if}
@@ -150,3 +150,4 @@
         padding: 20px;
     }
 </style>
+

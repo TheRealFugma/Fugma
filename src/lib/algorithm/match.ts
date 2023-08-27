@@ -1,5 +1,6 @@
 import {levenshteinEditDistance} from 'levenshtein-edit-distance'
 
+
 export function getMatchRatio(word1: string, word2: string) {
     var distance = levenshteinEditDistance(word1, word2, true)
     return 1 - distance / Math.max(word1.length, word2.length)

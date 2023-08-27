@@ -6,7 +6,7 @@
 <div class='footbox black' >
      <div class='nav_logo' >
        <div class='circle' ></div>
-       <h1 class='cas-size3-reg' style="color: white;" >fugma</h1> 
+       <h1 class='cas-size3-reg' style="color: white;" >Matcha</h1> 
     </div>
 </div>
 

@@ -9,7 +9,7 @@
  <div class='nav_inner'>
   <div class='nav_logo'>
     <div class='circle'></div>
-    <h1 class='cas-size2-reg'>fugma</h1>
+    <h1 class='cas-size2-reg'>Matcha</h1>
   </div> 
   <div class='event_name'>
     <h1 class='cas-size3-reg'>{event.name}</h1>

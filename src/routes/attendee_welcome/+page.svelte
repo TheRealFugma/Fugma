@@ -17,8 +17,12 @@
  </div>
 </div>
 <div class='calling border'>
-	<h1 class='cas-size5-reg'>Welcome to <em>Matcha</em></h1>
-	<p class='hal-size1-reg sub'>Automatically form groups and allocate<br/> attendees based on skills</p>
+	<h1 class='cas-size5-reg'>Hackathon 2023</h1>
+	<br/>
+	<br/>
+	<div class="title-line"></div>
+	<br/>
+	<p class='hal-size1-reg sub'>SYNCS HACK is back for another year with an explosive 24-hour brain cell<br/> crunch where YOU will compete with other teams to ideate, develop and<br/> pitch your very own idea!</p>
 </div>
 <div class="border">
 	<div class='a-o-option border'>
@@ -29,30 +33,30 @@
 	</div>
 	<div class='steps'>
 		{#if selected == 0}
-		<div class='step grey'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>01</div>
 			<p class='hal-size2-reg'>Create an <b>event</b> and descibe what it's about</p>
 			<p class='hal-size2-reg'>Tell us how want your attendees to be <b>grouped</b></p>
 		</div>
-		<div class='step brown'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>02</div>
 			<p class='hal-size2-reg'>Share the <b>invite code</b> with your attendees</p>
 			<p class='hal-size2-reg'>Wait for them to inpute their <b>skills and traits</b></p>
 		</div>
-		<div class='step green'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>03</div>
 			<p class='hal-size2-reg'>Let our algorithm match your attendees with one another to <b>form their groups</b></p>
 		</div>
 		{:else}
-		<div class='step grey'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>01</div>
 			<p class='hal-size2-reg'>Join the event space by inputting the <b>event code</b></p>
 		</div>
-		<div class='step brown'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>02</div>
 			<p class='hal-size2-reg'>Fill in your details, <b>skills and traits</b></p>
 		</div>
-		<div class='step green'>
+		<div class='step'>
 			<div class='number cas-size6-reg'>03</div>
 			<p class='hal-size2-reg'>Swipe through potential <b>partners</b> and <b>group memebers</b></p>
 		</div>
@@ -60,26 +64,14 @@
 
 	</div>
 </div>
-<div class='border'>
-	<div class='eventOptions'>
-		<div class='eOption border p-3'>
-			<h1 class='cas-size3-reg pb-3'>Create Event</h1>
-			<button class='hal-size2-reg option grey'>People to People</button>
-			<button class='hal-size2-reg option brown'>People to Group</button>
-			<button class='hal-size2-reg option green'>People to Project</button>
-		</div>
-		<div class='eOption border p-12'>
-			<h1 class='cas-size3-reg p-3'>Join Event</h1>
-			<p class='mb-3'>Enter Event Code</p>
-			<form class='flex flex-col items-center justify-center'>
-				<input type="text" placeholder="ABC123" class='hal-size2-reg mb-2'/>
-				<button class='hal-size2-reg option'>Join</button>
-			</form>
-		</div>
-	</div>
-</div>
 
 <style>
+	.title-line {
+		width: 100px; /* Adjust line length */
+		height: 2px; /* Adjust line thickness */
+		background-color: #333; /* Adjust line color */
+		margin: 0 auto; /* Center the line */
+	}
 	.border {
 		border: 0.5px solid var(--black);
 	}
@@ -154,27 +146,95 @@
 		margin-bottom: 1.5rem;
 	}
 
-	.eventOptions {
-		display: flex;
-		flex-direction: row;
-		align-items: baseline;
-	}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow: auto;
+}
 
-	.eOption {
-		margin: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		min-height: 20rem;
-		margin-bottom: auto;
-		flex-grow: 1;
-	}
-	 
-	.option {
-		padding: 1rem 2rem;
-		margin: 8px;
-		border: 1px solid var(--black);
-	}
+.events-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.events_description {
+  flex: 1;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.logo-container {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.split-boxes {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+}
+
+.split-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #ccc;
+  padding: 20px;
+  margin: 5px;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+background-color: white;
+color: black;
+padding: 20px;
+}
+
+.content {
+flex: 1;
+overflow-y: auto; /* Enable vertical scrolling */
+padding: 20px;
+}
+
 
 </style>

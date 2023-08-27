@@ -17,7 +17,7 @@
  <div class='nav_inner'>
   <div class='nav_logo'>
     <div class='circle'></div>
-    <h1 class='cas-size3-reg'>fugma</h1>
+    <h1 class='cas-size3-reg'>Matcha</h1>
   </div> 
  </div>
 </div>

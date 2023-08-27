@@ -21,7 +21,7 @@
     </div>
     <div class='score green hal-size1-reg'>
         <span class=''>Matchaness:</span> <span class='cas-size2-reg'
-            style="font-size: 15pt">{score.toFixed(4) * 200}</span>
+            style="font-size: 15pt">{(score * 200).toFixed(4)}</span>
     </div>
     <div class='action brown'><b>{action}</b></div>
 </div>

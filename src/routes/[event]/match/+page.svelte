@@ -93,8 +93,7 @@
     <div class='announcement cas-size3-reg'>Your suggested projects</div>
     <div class='matches'>
         {#each projectMatches as eventProject}
-            <UserCard name={eventProject[0].name} description={eventProject[0].description} score={eventProject[1]}
-                action={"Join"} />
+            <UserCard name={eventProject[0].name} description={eventProject[0].description} score={eventProject[1]} action={"Join"} />
         {/each}
     </div>
     
@@ -104,10 +103,10 @@
             {#each peopleMatches as people}
                 <UserCard name={people[0].name} description={people[0].email} score={people[1]} 
                     action={"Invite"}/>
-                <button>
+                <!-- <button>
                     <label for="invite">Invite</label>
                     <input type="checkbox" id="invite"/>
-                </button>
+                </button> -->
             {/each}
         </div>
 {/if}

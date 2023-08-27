@@ -33,7 +33,7 @@ export function getArrayMatchRatio(list1: string[], list2: string[]) {
             raw += getMatchRatio(list1[i], list2[j])
         }
     }
-    return raw / list1.length / list2.length
+    return raw / list1.length / list2.length || 0
 }
 
 async function getPersonProjectRatio(person: MatchaUser, project: EventProject) {

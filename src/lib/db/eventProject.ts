@@ -17,6 +17,8 @@ export async function updateProject(project: EventProject) {
 }
 
 export async function getEventProject(projectID: string): Promise<EventProject> {
+    if (projectID === "") return convertEventProject({} as DocumentSnapshot);
+
     const docRef = doc(db, "projects", projectID);
     const docSnap = await getDoc(docRef);
 

@@ -88,7 +88,7 @@
 			<p class='mb-3'>Enter Event Code</p>
 			<form class='flex flex-col items-center justify-center'>
 				<input type="text" placeholder="ABC123" class='hal-size2-reg mb-2' bind:value={eventID}/>
-				<a class='hal-size2-reg option' href={`/${eventID}/user`}>Join</a>
+				<a class='hal-size2-reg option' href={`/rymGmYTCm0fb9gClzbe3/user`}>Join</a>
 			</form>
 		</div>
 	</div>

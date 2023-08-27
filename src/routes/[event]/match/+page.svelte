@@ -45,11 +45,13 @@
         console.log(allPeople);
         console.log(allProjects);
 
-        peopleMatches = personMatchPeople($userAuth, allPeople).reverse();
+        peopleMatches = await personMatchPeople($userAuth, allPeople)
+        peopleMatches.reverse()
 
         // {user: 0.6, user2: 0.4}
 
-        projectMatches = personMatchProjects($userAuth, allProjects).reverse();
+        projectMatches = await personMatchProjects($userAuth, allProjects);
+        projectMatches.reverse()
 
         console.log(peopleMatches);
         console.log(projectMatches);

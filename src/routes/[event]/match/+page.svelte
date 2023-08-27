@@ -12,6 +12,8 @@
     import { doc, onSnapshot } from "firebase/firestore";
     import { db } from '$lib/firebase';
 
+    import UserCard from '$lib/components/UserCard.svelte';
+
     export let data;
 
     const event: MatchaEvent = data.event;
@@ -78,21 +80,6 @@
             {event.date}
         </div>
     </div>
-    <div class='calling border'>
-        <h2 class='cas-size3-reg'>Your suggested group members</h2>
-            <div class='members'>
-                <div class='green member border'>
-                    {event.attendees.length} people joined
-                </div>
-                <div class='brown member border'>
-                    {event.date}
-                </div>
-                <div class='grey member border'>
-                    {event.date}
-                </div>
-            </div>
-    </div>
-
     {:else}
 
     <h1>Event not found</h1>
@@ -101,46 +88,26 @@
 
 
 {#if event.category === "Project Mode"}
-    {#each projectMatches as eventProject}
-        {eventProject[0].name}
-        <br/>
-
-        {eventProject[0].description}
-        {#each eventProject[0].skills as skill}
-            {skill}
-            <br/>
+    <div class='announcement cas-size3-reg'>Your suggested projects</div>
+    <div class='matches'>
+        {#each projectMatches as eventProject}
+            <UserCard name={eventProject[0].name} description={eventProject[0].description} score={eventProject[1]}
+                action={"Join"} />
         {/each}
-
-        Similarity: {eventProject[1]}
-
-        <button class="btn variant-filled" on:click={async () => await gotoProject(eventProject[0].id)}>View Project</button>
-
-        <br/>
-    {/each}
+    </div>
     
 {:else}
-    {#each peopleMatches as user}
-        {user[0].name}
-        <!-- {user.description} -->
-        {#each user[0].traits as trait}
-            {trait}
-            <br/>
-
-        {/each}
-
-        {#each user[0].answers as answer}
-            {answer}
-            <br/>
-
-        {/each}
-
-        Similarity: {user[1]}
-
-        <label for="invite">Invite</label>
-        <input type="checkbox" id="invite"/>
-
-        <br/>
-    {/each}    
+        <div class='announcement cas-size3-reg'>Look through the suggested projects</div>
+        <div class='matches'>
+            {#each peopleMatches as people}
+                <UserCard name={people[0].name} description={people[0].email} score={people[1]} 
+                    action={"Invite"}/>
+                <button>
+                    <label for="invite">Invite</label>
+                    <input type="checkbox" id="invite"/>
+                </button>
+            {/each}
+        </div>
 {/if}
 
 
@@ -186,5 +153,18 @@
         padding: 20px;
         width: 50%;
         text-align: center;
+    }
+
+    .announcement {
+        padding: 20px;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .matches {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 </style>
